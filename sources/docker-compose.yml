@@ -1,0 +1,88 @@
+version: '3'
+
+services : 
+    ihm :
+      container_name: ESGI_IHM
+      build: docker/ihm
+      ports : 
+         - "80:80"
+      volumes : 
+       - ./ihm:/var/www/html/
+#    corrections :
+#      container_name: ESGI_CORRECTION
+#      build: docker/corrections
+#      ports :
+#         - "8181:80"
+#      volumes:
+#         - ./corrections:/var/www/html/
+    # mysql:
+      # container_name: ESGI_MYSQLDB
+      # image: mysql:latest
+      # ports:
+         # - "3306:3306"  
+      # environment:
+         # - MYSQL_ROOT_PASSWORD=admin
+         # - MYSQL_DATABASE=exercice
+         # - MYSQL_USER=eleve
+         # - MYSQL_PASSWORD=eleve
+    # phpmyadmin:
+      # image: phpmyadmin/phpmyadmin
+      # container_name: ESGI_PMA
+      # environment:
+         # - PMA_ARBITRARY=1
+         # - PMA_HOST=mysql
+         # - MYSQL_USERNAME=root
+         # - MYSQL_PASSWORD=admin
+      # ports:
+         # - "8080:80"
+      # volumes:
+         # - /sessions
+      # links:
+         # - mysql:mysql
+#     mongodb :
+#       container_name: ESGI_MONGO
+#       image : mongo:latest
+#       ports :
+#          - "27017:27017"
+#    otsdb:
+#      container_name: ESGI_OTSDB
+#      hostname: opentsdb
+#      image: petergrace/opentsdb-docker:latest
+#      ports:
+#         - 4242:4242
+#         - 60030:60030
+    neo4j:
+      container_name: ESGI_NEO4J
+      image: neo4j:latest
+      environment:
+         - "NEO4J_AUTH:neo4j:admin"
+      cap_add:
+         - SYS_RESOURCE
+      ports:
+         - "7474:7474"
+         - "7687:7687"
+      networks:
+        vpcbr:
+          ipv4_address: 10.5.0.6
+    python:
+      container_name: ESGI_PYTHON
+      build: docker/python
+      volumes: 
+        - ./python:/srv/python
+      stdin_open: true
+      tty: true
+      links:            ## connects neo4j to app container
+        - neo4j
+#      command: sh -c "cd /srv/python ;python3 template_python_twitter.py"
+      networks:
+        vpcbr:
+          ipv4_address: 10.5.0.5
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.5.0.0/16
+#        - gateway: 10.5.0.1

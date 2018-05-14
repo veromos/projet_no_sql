@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/CDC-1.1/Foundation-1.1"/>
+	<classpathentry kind="lib" path="C:/Users/Aurelien/Documents/TOS_BD-20161216_1026-V6.3.1/plugins/org.talend.core.runtime_6.3.1.20161216_1026.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aurelien/Documents/TOS_BD-20161216_1026-V6.3.1/plugins/org.talend.metadata.managment_6.3.1.20161216_1026.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aurelien/Documents/TOS_BD-20161216_1026-V6.3.1/plugins/org.talend.core_6.3.1.20161216_1026.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aurelien/Documents/TOS_BD-20161216_1026-V6.3.1/plugins/org.talend.designer.codegen_6.3.1.20161216_1026/"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
