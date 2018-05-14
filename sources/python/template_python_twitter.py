@@ -1,9 +1,10 @@
 import tweepy
 from py2neo import Graph
+import re
 
 # uri = "10.5.0.6:7474" 
 uri = "http://neo4j:7474" 
-password="le mot de pass que vous avez definit dans neo4j"
+password="esgi_nosql"
 
 
 graph = Graph(uri,password=password)
@@ -14,10 +15,10 @@ graph.data("CREATE (:USER {name:'VERLEYEN'})")
 
 # definir consumer_key, consumer_secret
 
-consumer_key = ""
-consumer_secret = ""
-access_token = ""
-access_token_secret = ""
+consumer_key = "C2Qpfh7S6ml7ipONpsS6Z6Aqq"
+consumer_secret = "VozFiaCTOYSu1YYtpG7U2rlZuK5kSzgmmpXrzFjBjMineA2cgL"
+access_token = "831914034131849218-GkLaPrHsWYW2GLyUxheXPcpPHbkcrwr"
+access_token_secret = "45iCrdYbxsM9HaQkFQ3tjMhWWFYGpssjW8mN40SZ2bTVo"
 
 # ci-dessous regex et fonctions utiles : 
 UTF_CHARS = r'a-z0-9_\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u00ff'
