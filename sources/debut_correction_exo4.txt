@@ -1,0 +1,34 @@
+####################
+
+###Format proposé###
+
+####################
+
+#(USER)-[ :TWEETED]-(TWEET)
+
+#(USER)-[ :RETWEETED]-(TWEET)
+
+#(TWEET)-[CONTAIN]-(HASHTAG)
+
+
+
+###Voir les tweet et retweets###
+
+MATCH (n:TWEET) WHERE n.retweet="True" RETURN n
+
+
+
+###Hashtags les plus utilisés###
+
+MATCH (h:HASHTAG)-[c:CONTAIN]-(t:TWEET) RETURN DISTINCT h,count(c) ORDER BY count(c) DESC
+
+
+
+###Shortpath between other users###
+
+
+MATCH p= (n1:USER)-[*..6]-(n2:USER) WHERE n1.name='Apple' AND n2.name='EditorBriefings' RETURN min(length(p))
+
+
+MATCH p= (n1:USER)-[*..4]-(n2:USER) WHERE n1.name='Apple' AND n2.name='EditorBriefings' RETURN p
+
