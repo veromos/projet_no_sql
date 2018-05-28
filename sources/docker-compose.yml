@@ -39,11 +39,15 @@ services :
          # - /sessions
       # links:
          # - mysql:mysql
-#     mongodb :
-#       container_name: ESGI_MONGO
-#       image : mongo:latest
-#       ports :
-#          - "27017:27017"
+    mongodb :
+      container_name: ESGI_MONGO
+      image : mongo:latest
+      ports :
+         - "27017:27017"
+      networks:
+        vpcbr:
+          ipv4_address: 10.5.0.7
+ 
 #    otsdb:
 #      container_name: ESGI_OTSDB
 #      hostname: opentsdb
