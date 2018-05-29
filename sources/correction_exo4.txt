@@ -32,3 +32,27 @@ MATCH p= (n1:USER)-[*..6]-(n2:USER) WHERE n1.name='Apple' AND n2.name='EditorBri
 
 MATCH p= (n1:USER)-[*..4]-(n2:USER) WHERE n1.name='Apple' AND n2.name='EditorBriefings' RETURN p
 
+#########################################################
+
+###Création d'un graphe de connaissance complémentaire###
+
+#########################################################
+
+#(USER)-[:INFLUENCE]-(HASHTAG)
+
+
+
+
+MATCH (u:USER)-[:RETWEETED]-(:TWEET)-[:CONTAIN]-(h:HASHTAG) MERGE (u)-[i:INFLUENCE]->(h) ON CREATE SET i.strength = 0 ON MATCH SET i.strength = coalesce(i.strength, 0) + 1
+
+###Hashtag le plus influent###
+
+MATCH p=(h:HASHTAG)-[i:INFLUENCE]-(u:USER) RETURN h, sum(i.strength) as compteur ORDER BY compteur DESC
+
+
+
+###Hashtag le plus populaire###
+
+MATCH p=(h:HASHTAG)-[i:INFLUENCE]-(u:USER) RETURN h, count(u) as compteur ORDER BY compteur DESC
+
+
